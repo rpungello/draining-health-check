@@ -2,6 +2,8 @@
 
 namespace Rpungello\DrainingHealthCheck\Concerns;
 
+use Throwable;
+
 trait InteractsWithDrainingState
 {
     public function isDraining(): bool
@@ -14,8 +16,26 @@ trait InteractsWithDrainingState
         if ($draining) {
             touch($this->pathToDrainingFile());
         } else {
-            unlink($this->pathToDrainingFile());
+            try {
+                $this->removeDrainingFile();
+            } catch (Throwable) {
+                // Do nothing
+            }
         }
+    }
+
+    public function clearDrainingState(): void
+    {
+        try {
+            $this->removeDrainingFile();
+        } catch (Throwable) {
+            // Do nothing
+        }
+    }
+
+    protected function removeDrainingFile(): void
+    {
+        unlink($this->pathToDrainingFile());
     }
 
     protected function pathToDrainingFile(): string

@@ -4,10 +4,13 @@ namespace Rpungello\DrainingHealthCheck\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Rpungello\DrainingHealthCheck\Concerns\InteractsWithDrainingState;
 use Rpungello\DrainingHealthCheck\DrainingHealthCheckServiceProvider;
 
 class TestCase extends Orchestra
 {
+    use InteractsWithDrainingState;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -17,16 +20,17 @@ class TestCase extends Orchestra
         );
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             DrainingHealthCheckServiceProvider::class,
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
         config()->set('database.default', 'testing');
+        $this->clearDrainingState();;
 
         /*
          foreach (\Illuminate\Support\Facades\File::allFiles(__DIR__ . '/../database/migrations') as $migration) {
