@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Rpungello\DrainingHealthCheck\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class DrainingHealthCheckCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'draining-health-check';
 
     public $description = 'My command';
 
