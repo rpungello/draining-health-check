@@ -2,7 +2,8 @@
 
 namespace Rpungello\DrainingHealthCheck;
 
-use Rpungello\DrainingHealthCheck\Commands\DrainingHealthCheckCommand;
+use Rpungello\DrainingHealthCheck\Commands\HealthAcceptCommand;
+use Rpungello\DrainingHealthCheck\Commands\HealthDrainCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -17,9 +18,7 @@ class DrainingHealthCheckServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('draining-health-check')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_draining_health_check_table')
-            ->hasCommand(DrainingHealthCheckCommand::class);
+            ->hasCommand(HealthDrainCommand::class)
+            ->hasCommand(HealthAcceptCommand::class);
     }
 }
