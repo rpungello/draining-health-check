@@ -16,6 +16,7 @@ class HealthAcceptCommand extends Command
     public function handle(): int
     {
         $this->setDraining(false);
+        $this->info('This instance is now accepting connections.');
 
         return self::SUCCESS;
     }

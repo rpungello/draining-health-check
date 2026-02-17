@@ -16,6 +16,7 @@ class HealthDrainCommand extends Command
     public function handle(): int
     {
         $this->setDraining(true);
+        $this->info('This instance is now draining connections.');
 
         return self::SUCCESS;
     }
