@@ -13,8 +13,7 @@ class DrainingHealthCheck extends Check
     public function run(): Result
     {
         if ($this->isDraining()) {
-            return Result::make()
-                ->failed('The application is currently draining.');
+            return Result::make()->failed('The application is currently draining.');
         } else {
             return Result::make()->ok();
         }
