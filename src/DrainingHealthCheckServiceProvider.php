@@ -2,9 +2,9 @@
 
 namespace Rpungello\DrainingHealthCheck;
 
+use Rpungello\DrainingHealthCheck\Commands\DrainingHealthCheckCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Rpungello\DrainingHealthCheck\Commands\DrainingHealthCheckCommand;
 
 class DrainingHealthCheckServiceProvider extends PackageServiceProvider
 {
